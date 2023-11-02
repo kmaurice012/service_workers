@@ -1,10 +1,4 @@
 const cachedName = "version2";
-const cachedAssets = [
-  "index.html",
-  "about.html",
-  "./js/main.js",
-  "./css/index.css",
-];
 
 self.addEventListener("install", (event) => {
   console.log("service worker installed");
@@ -46,3 +40,20 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+
+// self.addEventListener("fetch", (e) => {
+//     console.log("fetching service worker");
+//     e.respondWith(
+//       fetch(e.request)
+//         .then((res) => {
+//           const responseClone = res.clone();
+//           caches.open(cachedName).then((cache) => {
+//             cache.put(e.request, responseClone);
+//           });
+//           return res;
+//         })
+//         .catch((err) => {
+//           caches.match(e.request).then((res) => res);
+//         }),
+//     );
+//   })
